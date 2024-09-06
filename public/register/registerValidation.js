@@ -1,5 +1,3 @@
-const { response } = require("express");
-
 async function validateForm(event) {
     event.preventDefault();
 
@@ -49,19 +47,19 @@ async function validateForm(event) {
             hasError = ture;
         }
     }
+}
 
-    function clearError() {
-        const existingErrorDiv = document.querySelector('.alert');
-        if(existingErrorDiv) {
-            existingErrorDiv.remove();
-        }
+function clearError() {
+    const existingErrorDiv = document.querySelector('.alert');
+    if(existingErrorDiv) {
+        existingErrorDiv.remove();
     }
+}
 
-    function displayError(message){
-        const form = document.getElementById('registrationForm');
-        const errorDiv = document.getElementById('div');
-        errorDiv.className = 'alert aler-danger';
-        errorDiv.textContent = message;
-        form.insertBefore(errorDiv, form.firstChild);
-    }
+function displayError(message) {
+    const form = document.getElementById('registrationForm');
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'alert alert-danger';
+    errorDiv.textContent = message;
+    form.insertBefore(errorDiv, form.firstChild);
 }
