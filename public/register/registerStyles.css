@@ -1,0 +1,34 @@
+.container {
+    height: 90vh !important;
+}
+
+h3 {
+    padding-top: 20px;
+    text-align: center;
+}
+
+form {
+    padding-top: 50px;
+    width: 40%;
+    margin: 0 auto;
+}
+
+.form-label, .form-text, h3 {
+    color: #cfcfcf !important;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.alert-danger {
+    color: red;
+    padding: 10px;
+    border: 1px solid red;
+    border-radius: 5px;
+}
