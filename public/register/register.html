@@ -24,7 +24,7 @@
             </ul>
         </header>
         <h3>Registration</h3>
-        <form id="registrationForm" onsubmit="return validateForm(event)">
+        <form id="registrationForm">
             <div class="mb-3">
                 <label for="inputEmail1" class="form-label">Email address</label>
                 <input type="email" class="form-control" id="inputEmail1" name="email" aria-describedby="emailHelp">
@@ -40,8 +40,9 @@
             </div>
             <div id="formErrors" class="alert alert-danger" style="display: none;"></div> <!-- Error container -->
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>    
-    <script src="registerValidation.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        </form>
+        <script type="module" src="validation/registerFormValidation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </div>
 </body>
 </html>

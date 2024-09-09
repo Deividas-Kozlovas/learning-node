@@ -1,3 +1,4 @@
+import { displayError } from "./validation/registerErrorHandling.js";
 
 export async function registerUser(formData) {
     try {

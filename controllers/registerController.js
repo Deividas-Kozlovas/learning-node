@@ -22,8 +22,7 @@ exports.registerUser = async (req, res) => {
             return res.status(400).json({ error: 'User already exists' });
         }
 
-        const newUser = new User({ email, password });
-        await newUser.save();
+        await UserRepository.createUser({ email, password });
 
         return res.json({ message: 'Registration successful' });
     } catch (error) {

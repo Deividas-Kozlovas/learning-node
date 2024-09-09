@@ -1,8 +1,8 @@
+import { displayError, clearErrors } from './registerErrorHandling.js';
+import { registerUser } from '../registerUser.js'; // Import registerUser if it's in a separate file
 
-import { displayError, clearErrors } from './registerErrorHandling';
-
-export async function validateForm(event) {
-    event.preventDefault();
+async function validateForm(event) {
+    event.preventDefault(); // Prevent the default form submission
 
     const form = document.getElementById('registrationForm');
     const formData = new FormData(form);
@@ -55,3 +55,11 @@ export async function validateForm(event) {
     // If no errors, proceed with registration
     await registerUser(formData);
 }
+
+// Attach the event listener when the document is loaded
+window.addEventListener('load', () => {
+    const form = document.getElementById('registrationForm');
+    if (form) {
+        form.addEventListener('submit', validateForm);
+    }
+});
