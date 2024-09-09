@@ -21,8 +21,9 @@ exports.registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ error: 'User already exists' });
         }
+        const hashedPassword = await bycrypt.hash(password, 10);
 
-        await UserRepository.createUser({ email, password });
+        await UserRepository.createUser({ email, password: hashedPassword });
 
         return res.json({ message: 'Registration successful' });
     } catch (error) {

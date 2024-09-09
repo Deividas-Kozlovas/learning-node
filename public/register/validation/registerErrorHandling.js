@@ -1,15 +1,17 @@
-
-export function clearErrors() {
-    const existingErrorDiv = document.querySelector('.alert');
-    if (existingErrorDiv) {
-        existingErrorDiv.remove();
+// Display error messages
+export function displayError(message) {
+    const errorContainer = document.getElementById('formErrors');
+    if (errorContainer) {
+        errorContainer.innerText = message;
+        errorContainer.style.display = 'block'; // Show the error container
     }
 }
 
-export function displayError(message) {
-    const form = document.getElementById('registrationForm');
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'alert alert-danger';
-    errorDiv.textContent = message;
-    form.insertBefore(errorDiv, form.firstChild);
+// Clear error messages
+export function clearErrors() {
+    const errorContainer = document.getElementById('formErrors');
+    if (errorContainer) {
+        errorContainer.innerText = ''; // Clear the content
+        errorContainer.style.display = 'none'; // Hide the error container
+    }
 }
