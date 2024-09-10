@@ -1,4 +1,5 @@
-export async function submitForm(formData) {
+
+export function submitForm(formData) {
     // Check if formData is correctly passed
     if (!(formData instanceof FormData)) {
         console.error('Invalid FormData object passed to submitForm');
@@ -13,26 +14,24 @@ export async function submitForm(formData) {
 
     console.log('Form Data Object:', formDataObj); // Log the converted form data for debugging
 
-    try {
-        // Perform the POST request
-        const response = await fetch('/login/submit-login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(formDataObj) // Send the object as JSON
-        });
-
+    // Perform the POST request
+    fetch('/login/submit-login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formDataObj) // Send the object as JSON
+    })
+    .then(response => {
         if (!response.ok) {
-            // Handle non-2xx HTTP responses
-            const errorData = await response.json();
-            console.error('Error response data:', errorData); // Log error data from response
-            throw new Error(errorData.error || 'Unknown error');
+            return response.json().then(data => {
+                console.error('Error response data:', data); // Log error data from response
+                throw new Error(data.error || 'Unknown error');
+            });
         }
-
-        // Handle successful response
-        const data = await response.json();
-
+        return response.json();
+    })
+    .then(data => {
         const errorDiv = document.getElementById('formErrors');
 
         // Clear previous errors
@@ -49,12 +48,13 @@ export async function submitForm(formData) {
             // Handle successful login
             window.location.href = '/dashboard'; // Redirect to dashboard or home
         }
-    } catch (error) {
+    })
+    .catch(error => {
         // Handle fetch errors or parsing errors
         const errorDiv = document.getElementById('formErrors');
         errorDiv.innerHTML = '';
         errorDiv.style.display = 'block';
         errorDiv.textContent = error.message || 'Unable to process the request. Please try again later.';
         console.error('Fetch error:', error); // Log fetch or parsing errors
-    }
+    });
 }
