@@ -14,8 +14,14 @@ async function validateForm(event) {
 
     let hasError = false;
 
-    if (email === '' || password === '' || repeatPassword === '') {
-        displayError('Fill in all values');
+    if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        displayError('Please enter a valid email address.');
+        hasError = true;
+    }
+
+   // Validate password
+    if (!password || !repeatPassword) {
+        displayError('Password is required.');
         hasError = true;
     }
 

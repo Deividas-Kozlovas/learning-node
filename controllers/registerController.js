@@ -1,6 +1,7 @@
 // src/controllers/userController.js
 
 const UserRepository = require('../repositories/userRepository');
+const bcrypt = require('bcrypt');
 
 const { validationResult } = require('express-validator');
 
@@ -21,7 +22,7 @@ exports.registerUser = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ error: 'User already exists' });
         }
-        const hashedPassword = await bycrypt.hash(password, 10);
+        const hashedPassword = await bcrypt.hash(password, 10);
 
         await UserRepository.createUser({ email, password: hashedPassword });
 

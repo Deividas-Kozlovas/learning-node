@@ -2,15 +2,17 @@ const express = require('express');
 const path = require('path');
 const router = express.Router();
 const registerController = require('../controllers/registerController');
+const validateRegistration = require('../middlewares/validation');
 
 // Serve the registration page
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../public/register/register.html'));
 });
 
-router.post('/submit-registration', registerController.registerUser);
+// Apply validation middleware to the registration route
+router.post('/submit-registration', validateRegistration, registerController.registerUser);
 
-// Check email availability
+// Check email availability route without validation
 router.post('/check-email', registerController.checkEmail);
 
 module.exports = router;
