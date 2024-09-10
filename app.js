@@ -2,8 +2,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const app = express();
+const session = require('express-session');
 
 app.use(express.json());
+
+app.use(session({
+    secret: 'your_secret_key',
+    resave: false,
+    saveUninitialized: true,
+}));
 
 mongoose.connect('mongodb://localhost:27017/mydatabase', {
     useNewUrlParser: true,
@@ -21,6 +28,9 @@ app.get('/', (req, res) => {
 
 const registerRoutes = require('./routes/registerRoutes');
 app.use('/register', registerRoutes);
+
+const loginRouter = require('./routes/loginRoutes');
+app.use('/login', loginRouter);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
