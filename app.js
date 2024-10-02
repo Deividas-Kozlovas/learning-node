@@ -32,6 +32,9 @@ app.use('/register', registerRoutes);
 const loginRouter = require('./routes/loginRoutes');
 app.use('/login', loginRouter);
 
+const dashboardRoutes = require('./routes/dashboardRoutes');
+app.use('/dashboard', dashboardRoutes);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`)
